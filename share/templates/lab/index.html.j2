@@ -34,11 +34,11 @@
 {% endfor %}
 
 {% block notebook_css %}
-<link rel="stylesheet" href="https://unpkg.com/@jupyterlab/nbconvert-css/style/index.css">
+<link rel="stylesheet" href="https://unpkg.com/@jupyterlab/nbconvert-css@{{ resources.jupyterlab_semver }}/style/index.css">
 {% if resources.theme == 'dark' %}
-    <link rel="stylesheet" href="https://unpkg.com/@jupyterlab/theme-dark-extension/style/variables.css">
+    <link rel="stylesheet" href="https://unpkg.com/@jupyterlab/theme-dark-extension@{{ resources.jupyterlab_semver }}/style/variables.css">
 {% elif resources.theme == 'light'  %}
-    <link rel="stylesheet" href="https://unpkg.com/@jupyterlab/theme-light-extension/style/variables.css">
+    <link rel="stylesheet" href="https://unpkg.com/@jupyterlab/theme-light-extension@{{ resources.jupyterlab_semver }}/style/variables.css">
 {% else %}
     {{ resources.include_lab_theme(resources.theme) }}
 {% endif %}

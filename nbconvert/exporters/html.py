@@ -28,6 +28,11 @@ from nbconvert.filters.widgetsdatatypefilter import WidgetsDataTypeFilter
 
 from .templateexporter import TemplateExporter
 
+try:
+    import jupyterlab
+    jupyterlab_version = jupyterlab.__version__
+except ImportError:
+    jupyterlab_version = '*'
 
 def find_lab_theme(theme_name):
     """
@@ -132,6 +137,8 @@ class HTMLExporter(TemplateExporter):
 
     widget_renderer_url = Unicode("", help="Full URL for Jupyter widgets").tag(config=True)
 
+    jupyterlab_semver = Unicode(jupyterlab_version, help="Version of JupyterLab styles to use").tag(config=True)
+    
     html_manager_semver_range = Unicode(
         "*", help="Semver range for Jupyter widgets HTML manager"
     ).tag(config=True)
@@ -287,4 +294,6 @@ class HTMLExporter(TemplateExporter):
         resources["jupyter_widgets_base_url"] = self.jupyter_widgets_base_url
         resources["widget_renderer_url"] = self.widget_renderer_url
         resources["html_manager_semver_range"] = self.html_manager_semver_range
+        resources["jupyterlab_semver"] = self.jupyterlab_semver
+
         return resources
